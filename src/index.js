@@ -1,16 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import localForage from 'localforage';
+import { persistStore } from 'redux-persist';
+import createBrowserHistory from 'history/createBrowserHistory';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom'
+import { Router} from 'react-router-dom'
+import store from './redux/store';
+export const history = createBrowserHistory();
+//import registerServiceWorker from './registerServiceWorker';
 
-import registerServiceWorker from './registerServiceWorker';
-
-ReactDOM.render(
-<BrowserRouter>
-  <App />
-</BrowserRouter>,
-document.getElementById('root')
+export const persist = persistStore(
+  store,
+  {
+    storage: localForage,
+    // whitelist: ['auth', 'recentView', 'settings'],
+  },
+  () => {
+    render(
+      <Provider store={store}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </Provider>,
+      document.getElementById('root'),
+    );
+  },
 );
-registerServiceWorker();
+
+// ReactDOM.render(
+//   <Provider store={store}>
+//       <Router>
+//         <App />
+//       </Router>
+//   </Provider>,
+//   document.getElementById('root')
+// );
+// registerServiceWorker();

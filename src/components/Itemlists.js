@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { Row, Col, Input } from 'antd';
 import { Radio, Pagination } from 'antd';
 import { Card } from 'antd';
-
+import {saveProduct} from '../actions/ProductAPI';
 import ProducttAPI from '../actions/ProductAPI'
+import { bindActtionCreators } from 'redux'
 
 import 'antd/dist/antd.css'; 
 
@@ -26,17 +28,25 @@ class ItemLists extends Component{
 
   async getProducts(){
     try {
+      // doan nay dât ve -> em muon dsspa 
       const response = await ProducttAPI.getListProducts(); 
-      this.setState({
-        products : response.data.products
-      }); 
+
+      const saveProductConnect  = (response) => {
+        return response;  
+      }
+
+      // this.setState({
+      //   products : response.data.products
+      // }); 
     } catch(error) {
       alert("please check api issue"); 
     }
   }
-  
+
   componentWillMount(){
-		this.getProducts();
+    console.log(this.props);
+    this.getProducts();
+    
   }
 
   handleCart(e){
@@ -48,6 +58,8 @@ class ItemLists extends Component{
 
   render(){
     let listProducts = []; 
+    
+    const {products} = this.props;
 
     if (this.state.products.length != 0) {
       listProducts = (this.state.products).map((product) =>{
@@ -70,6 +82,8 @@ class ItemLists extends Component{
         )
       }); 
     }
+
+    console.log(this.props.product);
 
     return(
       <div className="listProducts" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
@@ -103,4 +117,13 @@ class ItemLists extends Component{
   }
 }
 
-export default ItemLists;
+const mapStateToProps = state => ({
+  products: state.product.productData
+});
+
+const mapDispatchToProps = dispatch => ({
+  saveProductConnect: (response) => { // function 
+    dispatch(saveProduct(response));
+  }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ItemLists);

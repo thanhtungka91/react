@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
+import  Cart from './Cart'
+import  ItemLists from './ItemLists'
 
 import 'antd/dist/antd.css'; 
 import { Row, Col } from 'antd';
@@ -45,9 +48,13 @@ class Top extends Component{
     return(
       <div className="HeaderLayout">
         <Row>
-          <Col span={8}>Home</Col>
+          <Col span={8}>
+            <Link to='/' component={ItemLists} >Home </Link>
+          </Col>
           <Col span={8}>Top 5 Products </Col>
-          <Col span={8}>Your Cart</Col>
+          <Col span={8}>
+          <Link to='/cart' component={Cart} >Cart </Link>
+          </Col>
         </Row>
       </div>
   )

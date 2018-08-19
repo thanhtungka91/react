@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 
 const Search = Input.Search;
 
-class Itemlists extends Component{
+class ItemLists extends Component{
   constructor(props){
     super(props);
     this.state = {
@@ -79,4 +79,4 @@ class Itemlists extends Component{
   }
 }
 
-export default Itemlists;
+export default ItemLists;

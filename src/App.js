@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Layout } from 'antd';
 import Top from './components/Top';
-import Itemlists from './components/Itemlists';
 import './App.css';
+import Routers from './routers/Routers';
 
 const { Header, Footer, Content } = Layout;
 
@@ -33,9 +33,7 @@ class App extends Component {
             />
           </Header>
           <Content>
-            <Itemlists
-                cartItems={this.state.cart}
-            />
+            <Routers />
           </Content>
           <Footer>
             <p>

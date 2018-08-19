@@ -1,7 +1,7 @@
-import Api from '@/actions/Api'
+import Api from './API'
 
 export default {
-  getListItems () {
-    return Api().get('/listItem')
+  getListProducts () {
+    return Api().get('products'); 
   }
 }

@@ -10,19 +10,9 @@ class App extends Component {
   constructor(){
 		super();
 		this.state = {
-			products: [],
-			cart: [],
-			totalItems: 0,
-			totalAmount: 0, 
-			term: '',
-			category: '',
-			cartBounce: false,
-			quantity : 1,
-			quickViewProduct: {},
-			modalActive: false
     }
   };
-
+  
   render() {
     return (
       <div className="App">
@@ -33,7 +23,8 @@ class App extends Component {
             />
           </Header>
           <Content>
-            <Routers />
+            <Routers
+            />
           </Content>
           <Footer>
             <p>

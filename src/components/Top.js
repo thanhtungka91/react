@@ -4,7 +4,7 @@ import  Cart from './Cart'
 import  ItemLists from './ItemLists'
 
 import 'antd/dist/antd.css'; 
-import { Row, Col } from 'antd';
+import { Row, Col, Badge } from 'antd';
 
 class Top extends Component{
   constructor(props){
@@ -51,9 +51,13 @@ class Top extends Component{
           <Col span={8}>
             <Link to='/' component={ItemLists} >Home </Link>
           </Col>
-          <Col span={8}>Top 5 Products </Col>
-          <Col span={8}>
-          <Link to='/cart' component={Cart} >Cart </Link>
+          <Col span={7}>Top 5 Products </Col>
+          <Col span={7}>
+            <Link style={{paddingRight:20}} to='/cart' component={Cart} >
+                Your Cart
+            </Link>
+            <Badge count={5}>
+            </Badge>
           </Col>
         </Row>
       </div>

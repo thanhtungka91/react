@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default () => {
-  let url = 'https://app.smartmat.jp:3000/'
+  let url = 'https://private-3efa8-products123.apiary-mock.com/'
 
   const instance = axios.create({
     baseURL: url,

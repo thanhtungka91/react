@@ -4,6 +4,7 @@ import { Row, Col, Input } from 'antd';
 import { Radio, Pagination } from 'antd';
 import { Card,Button } from 'antd';
 import {saveProduct} from '../actions/ProductAPI';
+import {saveToCart} from '../actions/Cart';
 import ProducttAPI from '../actions/ProductAPI'; 
 
 import 'antd/dist/antd.css'; 
@@ -16,7 +17,8 @@ class ItemLists extends Component{
   constructor(props){
     super(props);
     this.state = {
-      products: []
+      products: [], 
+      carts: []
     };
   }
 
@@ -43,8 +45,9 @@ class ItemLists extends Component{
   }
 
   addToCart = (product) => {
-    
-    console.log("add product to cart ", product.name); 
+    const {addToCartConnect} = this.props;
+
+    addToCartConnect(product); 
   }
   handleCart(e){
     e.preventDefault();
@@ -55,11 +58,11 @@ class ItemLists extends Component{
 
   render(){
     let listProducts = []; 
+    debugger
     this.state.products = this.props.products;
 
     if (this.state.products.length != 0) {
       listProducts = (this.state.products).map((product, index) =>{
-        
         let name = product.name; 
         let productUrl = product.image; 
         let description = product.description; 
@@ -117,12 +120,16 @@ class ItemLists extends Component{
 }
 
 const mapStateToProps = state => ({
-  products: state.product.productData
+  products: state.product.productData,
+  carts: state.product.cartData
 });
 
 const mapDispatchToProps = dispatch => ({
-  saveProductConnect: (response) => { // function 
+  saveProductConnect: (response) => {
     dispatch(saveProduct(response));
+  }, 
+  addToCartConnect: (product) => {
+    dispatch(saveToCart(product));
   }
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ItemLists);

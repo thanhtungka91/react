@@ -2,6 +2,24 @@ const initState = {
   cartData: []
 }
 
+const addProductToCart = (cartDatas, product) => {
+
+  let checkDuplicate = false; 
+  cartDatas.forEach(data => {
+    if (data.productID === product.productID){
+      product.Quantity += 1
+      checkDuplicate = true 
+    } 
+  });
+  if (checkDuplicate === false) {
+    product.Quantity = 1 
+    return cartDatas.concat(product);
+  } else {
+    return cartDatas
+  }
+  
+}
+
 const removeProduct = (cartDatas, product) => {
   return cartDatas.filter(cartData => cartData.productID !== product.productID);
 }
@@ -12,16 +30,16 @@ function cartReducer(state = initState, action) {
     case 'saveToCart': {
       return {
         ...state,
-        cartData: [...state.cartData, action.cartData]
+        cartData: addProductToCart(state.cartData, action.cartData)
       }
     }
     case 'removeFromCart': {
       return {
         ...state,
-        cartData: removeProduct(state.cartData, action.cartData),
+        cartData: removeProduct(state.cartData, action.cartData)
       }
     }
-
+    
     default:
       return state;
   }

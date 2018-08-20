@@ -46,7 +46,7 @@ class ItemLists extends Component{
 
   addToCart = (product) => {
     const {addToCartConnect} = this.props;
-    debugger
+  
     addToCartConnect(product); 
   }
   handleCart(e){
@@ -58,10 +58,9 @@ class ItemLists extends Component{
 
   render(){
     let listProducts = []; 
-    debugger
     this.state.products = this.props.products;
 
-    if (this.state.products.length != 0) {
+    if (this.state.products.length !== 0) {
       listProducts = (this.state.products).map((product, index) =>{
         let name = product.name; 
         let productUrl = product.image; 

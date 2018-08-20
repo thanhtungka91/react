@@ -3,7 +3,7 @@ const initState = {
 }
 
 function cartReducer(state = initState, action) {
-debugger
+
   switch (action.type) {
     case 'saveToCart': {
       return {

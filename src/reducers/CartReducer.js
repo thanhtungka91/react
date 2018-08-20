@@ -8,7 +8,7 @@ function cartReducer(state = initState, action) {
     case 'saveToCart': {
       return {
         ...state,
-        cartData: state.cartData.concat(action.cartData)
+        cartData: [...state.cartData, action.cartData]
       }
     }
     default:

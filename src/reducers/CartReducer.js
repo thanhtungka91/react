@@ -2,6 +2,10 @@ const initState = {
   cartData: []
 }
 
+const removeProduct = (cartDatas, product) => {
+  return cartDatas.filter(cartData => cartData.productID !== product.productID);
+}
+
 function cartReducer(state = initState, action) {
 
   switch (action.type) {
@@ -11,6 +15,13 @@ function cartReducer(state = initState, action) {
         cartData: [...state.cartData, action.cartData]
       }
     }
+    case 'removeFromCart': {
+      return {
+        ...state,
+        cartData: removeProduct(state.cartData, action.cartData),
+      }
+    }
+
     default:
       return state;
   }

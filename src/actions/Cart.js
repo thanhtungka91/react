@@ -6,3 +6,12 @@ export function saveToCart(product) {
     })
   }
 }
+
+export function removeProductFromCart(product) {
+  return (dispatch) => {
+    dispatch({
+      type: 'removeFromCart',
+      cartData: product
+    })
+  }
+}

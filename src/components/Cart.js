@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
-import { Table } from 'antd';
+import { Table , Button} from 'antd';
 import { connect } from 'react-redux';
+import { removeProductFromCart } from '../actions/Cart';
 
 
 class Cart extends Component{
-  constructor(props){
-    super(props);
+
+  removeProductFromCart = (product) => {
+    const {removeProductFromCartConnect} = this.props;
+    removeProductFromCartConnect(product); 
   }
 
   render(){
-    debugger
     const data  = this.props.carts.cart.cartData 
-
     const columns = [{
       title: '',
       dataIndex: 'image',
@@ -41,7 +42,10 @@ class Cart extends Component{
       render: (text, record) => (
         <span>
           <p>10</p>
-          <a href="javascript:;">Delete</a>
+          <Button type="primary" icon="minus-circle-o" size="small"
+            onClick={this.removeProductFromCart.bind(this, record)}
+          >
+          </Button>
         </span>
       ),
     }];
@@ -68,4 +72,9 @@ const mapStateToProps = state => ({
   carts: state
 });
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = dispatch => ({
+  removeProductFromCartConnect: (product) => {
+    dispatch(removeProductFromCart(product));
+  }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

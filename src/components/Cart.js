@@ -12,7 +12,6 @@ class Cart extends Component{
     debugger
     const data  = this.props.carts.cart.cartData 
 
-
     const columns = [{
       title: '',
       dataIndex: 'image',
@@ -46,32 +45,22 @@ class Cart extends Component{
         </span>
       ),
     }];
-    
-    // const data = [
-    //   {
-    //     "productID": 4,
-    //     "name": "Chef Anton's Cajun Seasoning",
-    //     "description": "",
-    //     "unitPrice": 22,
-    //     "unitsInStock": 53,
-    //     "image": "http://lorempixel.com/400/200/technics/"
-    //   },
-    //   {
-    //     "productID": 5,
-    //     "name": "Chef Anton's Gumbo Mix",
-    //     "description": "",
-    //     "unitPrice": 21.35,
-    //     "unitsInStock": 0,
-    //     "image": "http://lorempixel.com/400/200/technics/"
-    //   }
-    // ];
 
-    return(
-      <div className="CartLayout" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
-        <h2>Your Cart</h2>
-        <Table columns={columns} dataSource={data} />
-      </div>
-    )
+    if (data.length !== 0) {
+      return(
+        <div className="CartLayout" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
+          <h2>Your Cart</h2>
+          <Table columns={columns} dataSource={data} />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          Cart is Empty 
+        </div>
+      )
+    }
+    
   }
 }
 

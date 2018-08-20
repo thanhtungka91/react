@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom'
-import  Cart from './Cart'
-import  ItemLists from './ItemLists'
+import { Link } from 'react-router-dom';
+import  Cart from './Cart';
+import  ItemLists from './ItemLists';
+import { connect } from 'react-redux';
 
 import 'antd/dist/antd.css'; 
 import { Row, Col, Badge } from 'antd';
@@ -45,6 +46,8 @@ class Top extends Component{
   }
 
   render(){
+    const numberItems  = (this.props.carts.cart.cartData).length 
+
     return(
       <div className="HeaderLayout">
         <Row>
@@ -56,7 +59,7 @@ class Top extends Component{
             <Link style={{paddingRight:20}} to='/cart' component={Cart} >
                 Your Cart
             </Link>
-            <Badge count={5}>
+            <Badge count={numberItems}>
             </Badge>
           </Col>
         </Row>
@@ -65,4 +68,8 @@ class Top extends Component{
   }
 }
 
-export default Top;
+const mapStateToProps = state => ({
+  carts: state
+});  
+
+export default connect(mapStateToProps)(Top); 

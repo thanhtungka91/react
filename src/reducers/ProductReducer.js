@@ -3,7 +3,6 @@ const initState = {
 }
 
 function productReducer(state = initState, action) {
-  debugger
   switch (action.type) {
     case 'SAVE_PRODUCT_RESPONSE': {
       return {

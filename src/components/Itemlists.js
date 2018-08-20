@@ -4,8 +4,7 @@ import { Row, Col, Input } from 'antd';
 import { Radio, Pagination } from 'antd';
 import { Card } from 'antd';
 import {saveProduct} from '../actions/ProductAPI';
-import ProducttAPI from '../actions/ProductAPI'
-import { bindActtionCreators } from 'redux'
+import ProducttAPI from '../actions/ProductAPI'; 
 
 import 'antd/dist/antd.css'; 
 
@@ -28,23 +27,18 @@ class ItemLists extends Component{
 
   async getProducts(){
     try {
-      // doan nay dât ve -> em muon dsspa 
       const response = await ProducttAPI.getListProducts(); 
+      console.log("This is the response ", response);
 
-      const saveProductConnect  = (response) => {
-        return response;  
-      }
-
-      // this.setState({
-      //   products : response.data.products
-      // }); 
+      const {saveProductConnect} = this.props;
+      saveProductConnect(response);
+      
     } catch(error) {
       alert("please check api issue"); 
     }
   }
 
   componentWillMount(){
-    console.log(this.props);
     this.getProducts();
     
   }
@@ -58,8 +52,7 @@ class ItemLists extends Component{
 
   render(){
     let listProducts = []; 
-    
-    const {products} = this.props;
+    this.state.products = this.props.products.data.products;
 
     if (this.state.products.length != 0) {
       listProducts = (this.state.products).map((product) =>{
@@ -82,9 +75,7 @@ class ItemLists extends Component{
         )
       }); 
     }
-
-    console.log(this.props.product);
-
+    
     return(
       <div className="listProducts" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
         <Row className="searchBar" style={{ paddingBottom: 30 }} > 

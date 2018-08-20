@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Input } from 'antd';
 import { Radio, Pagination } from 'antd';
 import { Card,Button } from 'antd';
-import {saveProduct} from '../actions/ProductAPI';
-import {saveToCart} from '../actions/Cart';
+import { saveProduct } from '../actions/ProductAPI';
+import { saveToCart } from '../actions/Cart';
 import ProducttAPI from '../actions/ProductAPI'; 
 
 import 'antd/dist/antd.css'; 

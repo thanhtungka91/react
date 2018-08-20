@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Row, Col, Input } from 'antd';
 import { Radio, Pagination } from 'antd';
-import { Card } from 'antd';
+import { Card,Button } from 'antd';
 import {saveProduct} from '../actions/ProductAPI';
 import ProducttAPI from '../actions/ProductAPI'; 
 
@@ -31,7 +31,7 @@ class ItemLists extends Component{
       console.log("This is the response ", response);
 
       const {saveProductConnect} = this.props;
-      saveProductConnect(response);
+      saveProductConnect(response.data.products);
       
     } catch(error) {
       alert("please check api issue"); 
@@ -40,9 +40,12 @@ class ItemLists extends Component{
 
   componentWillMount(){
     this.getProducts();
-    
   }
 
+  addToCart = (product) => {
+    
+    console.log("add product to cart ", product.name); 
+  }
   handleCart(e){
     e.preventDefault();
     this.setState({
@@ -52,15 +55,16 @@ class ItemLists extends Component{
 
   render(){
     let listProducts = []; 
-    this.state.products = this.props.products.data.products;
+    this.state.products = this.props.products;
 
     if (this.state.products.length != 0) {
-      listProducts = (this.state.products).map((product) =>{
+      listProducts = (this.state.products).map((product, index) =>{
+        
         let name = product.name; 
         let productUrl = product.image; 
         let description = product.description; 
         return (
-          <Col span={8} style={{ paddingBottom: 20}} >
+          <Col key = {index} span={8} style={{ paddingBottom: 20}} >
             <Card
               hoverable
               style={{ width: 300 }}
@@ -70,12 +74,16 @@ class ItemLists extends Component{
                 title={name}
                 description={description}
               />
+              <Button type="primary" icon="plus-circle-o" size="small"
+                onClick={this.addToCart.bind(this, product)}
+              >
+              </Button>
             </Card>
         </Col>
         )
       }); 
     }
-    
+
     return(
       <div className="listProducts" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
         <Row className="searchBar" style={{ paddingBottom: 30 }} > 

@@ -46,7 +46,7 @@ class ItemLists extends Component{
 
   addToCart = (product) => {
     const {addToCartConnect} = this.props;
-
+    debugger
     addToCartConnect(product); 
   }
   handleCart(e){

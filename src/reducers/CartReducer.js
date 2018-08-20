@@ -8,7 +8,7 @@ debugger
     case 'saveToCart': {
       return {
         ...state,
-        cartData: [...state.arr, action.cartData]
+        cartData: state.cartData.concat(action.cartData)
       }
     }
     default:

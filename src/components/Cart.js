@@ -26,7 +26,7 @@ class Cart extends Component{
       title: '',
       dataIndex: 'image',
       key: 'image',
-      render: text => <img style={{width:150}} src={text} />,
+      render: text => <img style={{width:200}} src={text} />,
     }, {
       title: 'ProductName',
       dataIndex: 'name',
@@ -61,7 +61,7 @@ class Cart extends Component{
 
     if (data.length !== 0) {
       return(
-        <div className="CartLayout" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
+        <div className="CartLayout" style={{ paddingTop: 30, paddingLeft:"15%", paddingRight:"15%", paddingBottom:30 }}>
           <h2>Your Cart</h2>
           <Table columns={columns} dataSource={data} />
           <div>

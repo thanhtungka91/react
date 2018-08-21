@@ -88,7 +88,7 @@ class ItemLists extends Component{
     }
 
     return(
-      <div className="listProducts" style={{ paddingTop: 30, paddingLeft:200, paddingRight:150, paddingBottom:30 }}>
+      <div className="listProducts" style={{ paddingTop: 30, paddingLeft:'15%', paddingRight:'15%', paddingBottom:30 }}>
         <Row className="searchBar" style={{ paddingBottom: 30 }} > 
           <Col span={16}>
           <Search 

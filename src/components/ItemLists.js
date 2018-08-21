@@ -45,24 +45,24 @@ class ItemLists extends Component{
   
     addToCartConnect(product); 
   }
-  
-  searchProduct (value) {
-    this.state.searchTerm = value
-  }
 
+  searchbByName(searchTerm){
+    this.setState(
+      {searchTerm}
+    )
+  }
+  
   render(){
     let listProducts = []; 
     this.state.products = this.props.products;
-    let term = this.state.searchTerm;
 
     function searchingFor(term){
 			return function(x){
 				return x.name.includes(term) || !term;
 			}
-		}
-
+    }
     if (this.state.products.length !== 0) {
-      listProducts = (this.state.products).filter(searchingFor(term)).map((product, index) =>{
+      listProducts = (this.state.products).filter(searchingFor(this.state.searchTerm)).map((product, index) =>{
         let name = product.name; 
         let productUrl = product.image; 
         let description = product.description; 
@@ -95,7 +95,8 @@ class ItemLists extends Component{
             placeholder="Search Product"
             enterButton="Search"
             size="large"
-            onChange={this.searchProduct.bind(this)}
+            value={this.state.searchTerm}
+            onChange = { event => this.searchbByName(event.target.value) }
           />
           </Col>
           <Col span={8}>

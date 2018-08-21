@@ -23,11 +23,6 @@ class ItemLists extends Component{
     };
   }
 
-  handleSubmit(e){
-    e.preventDefault();
-  }
-
-
   async getProducts(){
     try {
       const response = await ProducttAPI.getListProducts(); 

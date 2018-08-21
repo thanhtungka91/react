@@ -16,35 +16,7 @@ class Top extends Component{
         mobileSearch: false
     };
   }
-
-  handleSubmit(e){
-    e.preventDefault();
-  }
-
-  handleMobileSearch(e){
-    e.preventDefault();
-    this.setState({
-        mobileSearch: true
-    })
-  }
-
-  handleSearchNav(e){
-    e.preventDefault();
-    this.setState({
-        mobileSearch: false
-    }, function(){
-        this.refs.searchBox.value = "";
-        this.props.handleMobileSearch();
-    })
-  }
-
-  handleCart(e){
-    e.preventDefault();
-    this.setState({
-        showCart: !this.state.showCart
-    })
-  }
-
+  
   render(){
     const numberItems  = (this.props.carts.cart.cartData).length 
 

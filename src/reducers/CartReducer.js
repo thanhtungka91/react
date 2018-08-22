@@ -3,11 +3,12 @@ const initState = {
 }
 
 const addProductToCart = (cartDatas, product) => {
-
   let checkDuplicate = false; 
   cartDatas.forEach(data => {
     if (data.productID === product.productID){
-      product.Quantity += 1
+      if (product.unitsInStock > data.Quantity){
+        product.Quantity += 1
+      }
       checkDuplicate = true 
     } 
   });
@@ -39,7 +40,7 @@ function cartReducer(state = initState, action) {
         cartData: removeProduct(state.cartData, action.cartData)
       }
     }
-    
+
     default:
       return state;
   }

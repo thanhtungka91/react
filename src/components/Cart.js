@@ -35,6 +35,7 @@ class Cart extends Component{
       render: (text, record) => (
         <span>
           <p> {record.name}</p>
+
           <p> Item lef in stock: {record.unitsInStock - record.Quantity}</p>
         </span>
       ),

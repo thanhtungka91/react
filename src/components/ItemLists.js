@@ -66,6 +66,16 @@ class ItemLists extends Component{
         let name = product.name; 
         let productUrl = product.image; 
         let description = product.description; 
+        var addCardButton 
+        if ( product.unitsInStock > 0) {
+          addCardButton = 
+          <Button type="primary" icon="plus-circle-o" size="small"
+              onClick={this.addToCart.bind(this, product)}
+            >
+          </Button>; 
+        } else {
+          addCardButton =  <span>Out of Stock</span>
+        }
         return (
           <Col key = {index} span={8} style={{ paddingBottom: 20}} >
             <Card
@@ -77,10 +87,7 @@ class ItemLists extends Component{
                 title={name}
                 description={description}
               />
-              <Button type="primary" icon="plus-circle-o" size="small"
-                onClick={this.addToCart.bind(this, product)}
-              >
-              </Button>
+              {addCardButton}
             </Card>
         </Col>
         )

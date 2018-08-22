@@ -14,6 +14,7 @@ class Cart extends Component{
     const listCarts  = this.props.carts.cart.cartData 
     let total = 0 ; 
     listCarts.forEach(product => {
+      if (product.unitPrice == null) {product.unitPrice = 0}
       total += product.unitPrice * product.Quantity
     });
     return total; 
@@ -34,7 +35,7 @@ class Cart extends Component{
       render: (text, record) => (
         <span>
           <p> {record.name}</p>
-          <p> Item lef in stock: {record.unitsInStock}</p>
+          <p> Item lef in stock: {record.unitsInStock - record.Quantity}</p>
         </span>
       ),
     }, {
